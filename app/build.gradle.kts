@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -54,6 +55,8 @@ dependencies {
     implementation(libs.horologist.layout)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
+    implementation(libs.glide)
+    implementation(libs.glide.compose)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)

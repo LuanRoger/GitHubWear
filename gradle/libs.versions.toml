@@ -27,11 +27,12 @@ compose-navigation = { group = "androidx.wear.compose", name = "compose-navigati
 horologist = { group = "com.google.android.horologist", name = "horologist-composables", version = "0.7.8-alpha" }
 horologist-layout = { group = "com.google.android.horologist", name = "horologist-compose-layout", version = "0.7.8-alpha" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version = "2.11.0" }
-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-scalars", version = "2.11.0" }
-
+retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version = "2.9.0" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version = "4.14.2" }
+glide-compose = { group = "com.github.bumptech.glide", name = "compose", version = "1.0.0-beta01" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version = "1.8.10" }
