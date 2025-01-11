@@ -3,6 +3,7 @@ package com.luanroger.githubwear.services
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
 
 private val BASE_URL = "https://api.github.com/"
@@ -16,6 +17,7 @@ data class User(
 )
 
 interface GitHubService {
+    @Headers("User-Agent: GitHub Wear")
     @GET("users/{user}")
     suspend fun getUserInfo(@Path("user") user: String): User
 }
