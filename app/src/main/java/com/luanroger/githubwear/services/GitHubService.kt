@@ -1,4 +1,4 @@
-package com.luanroger.githubwear.presentation.services
+package com.luanroger.githubwear.services
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -15,6 +15,9 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.google.android.horologist.compose.layout.AppScaffold
+import com.luanroger.githubwear.presentation.homepage.HomePage
+import com.luanroger.githubwear.presentation.profilepage.ProfilePage
+import com.luanroger.githubwear.presentation.profilepage.ProfilePageViewModel
 import com.luanroger.githubwear.presentation.theme.GitHubWearTheme
 
 class MainActivity : ComponentActivity() {
