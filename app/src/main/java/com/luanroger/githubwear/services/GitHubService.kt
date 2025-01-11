@@ -1,5 +1,6 @@
 package com.luanroger.githubwear.services
 
+import com.google.gson.annotations.SerializedName
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -13,7 +14,28 @@ data class User(
 
     val login: String,
 
-    val avatar_url: String
+    @SerializedName("avatar_url")
+    val avatarUrl: String,
+
+    @SerializedName("public_repos")
+    val publicRepos: Int,
+
+    @SerializedName("public_gists")
+    val publicGists: Int,
+
+    val followers: Int,
+
+    val following: Int,
+
+    val location: String?,
+
+    val company: String?,
+
+    val hireable: Boolean?,
+
+    val blog: String?,
+
+    val bio: String?,
 )
 
 interface GitHubService {

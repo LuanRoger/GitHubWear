@@ -60,7 +60,7 @@ fun HomePage(navigateToProfile: (username: String) -> Unit) {
                 }
                 else {
                     Text(
-                        text = "Olá, $currentName!",
+                        text = "Hello, $currentName!",
                         style = MaterialTheme.typography.body1
                     )
                 }
@@ -85,7 +85,7 @@ fun HomePage(navigateToProfile: (username: String) -> Unit) {
             }
             else {
                 Text(
-                    text = "Digite um nome de usuário.",
+                    text = "Enter your username to see your profile.",
                     style = MaterialTheme.typography.caption3
                 )
             }
