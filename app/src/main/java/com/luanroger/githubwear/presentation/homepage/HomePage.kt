@@ -30,11 +30,11 @@ import com.google.android.horologist.compose.layout.ScreenScaffold
 import com.luanroger.githubwear.R
 
 @Composable
-fun HomePage(navigateToProfile: () -> Unit) {
+fun HomePage(navigateToProfile: (username: String) -> Unit) {
     val scrollState = rememberScrollState()
 
     ScreenScaffold(scrollState = scrollState) {
-        var currentname by remember { mutableStateOf("LuanRoger") }
+        var currentName by remember { mutableStateOf("LuanRoger") }
 
         Column(
             modifier = Modifier
@@ -49,10 +49,10 @@ fun HomePage(navigateToProfile: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             BasicTextField(
-                value = currentname,
-                onValueChange = { currentname = it },
+                value = currentName,
+                onValueChange = { currentName = it },
             ) {
-                if(currentname.isEmpty()) {
+                if(currentName.isEmpty()) {
                     Icon(
                         painter = painterResource(id = R.drawable.search),
                         contentDescription = "Search icon"
@@ -60,22 +60,22 @@ fun HomePage(navigateToProfile: () -> Unit) {
                 }
                 else {
                     Text(
-                        text = "Olá, $currentname!",
+                        text = "Olá, $currentName!",
                         style = MaterialTheme.typography.body1
                     )
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-            if(currentname.isNotEmpty()) {
+            if(currentName.isNotEmpty()) {
                 Row {
-                    Button(onClick = navigateToProfile) {
+                    Button(onClick = { navigateToProfile(currentName) }) {
                         Icon(
                             painter = painterResource(id = R.drawable.check),
                             contentDescription = "Profile icon"
                         )
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    Button(onClick = { currentname = "" }) {
+                    Button(onClick = { currentName = "" }) {
                         Icon(
                             painter = painterResource(id = R.drawable.x),
                             contentDescription = "Profile icon"

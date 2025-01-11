@@ -1,8 +1,3 @@
-/* While this template provides a good starting point for using Wear Compose, you can always
- * take a look at https://github.com/android/wear-os-samples/tree/main/ComposeStarter to find the
- * most up to date changes to the libraries and their usages.
- */
-
 package com.luanroger.githubwear.presentation
 
 import android.os.Bundle
@@ -11,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
@@ -42,10 +39,16 @@ fun WearApp() {
             val model: ProfilePageViewModel = viewModel()
 
             SwipeDismissableNavHost(navController, startDestination = "home") {
-                composable("home") { HomePage({
-                    navController.navigate("profile/{username}")
-                }) }
-                composable("profile/{username}") { navBackStackEntry ->
+                composable("home") { HomePage { username ->
+                    navController.navigate("profile/${username}")
+                }
+                }
+                composable("profile/{username}",
+                    arguments = listOf(navArgument("username") { type = NavType.StringType }))
+                { navBackStackEntry ->
+                    val username = navBackStackEntry.arguments?.getString("username")
+                    username?.let { model.getUserInfo(it) }
+
                     ProfilePage(uiState = model.uiState)
                 }
             }
