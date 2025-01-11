@@ -1,12 +1,13 @@
 package com.luanroger.githubwear.presentation.profilepage
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.luanroger.githubwear.services.GitHubApi
 import com.luanroger.githubwear.services.User
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 sealed interface ProfilePageState {
@@ -16,17 +17,20 @@ sealed interface ProfilePageState {
 }
 
 class ProfilePageViewModel: ViewModel() {
-    var uiState: ProfilePageState by mutableStateOf(ProfilePageState.Loading)
-        private set
+    private val _uiState = MutableStateFlow<ProfilePageState>(ProfilePageState.Loading)
+    val uiState: StateFlow<ProfilePageState> = _uiState.asStateFlow()
+
 
     fun getUserInfo(username: String) {
+        Log.v("ProfilePageViewModel", "getUserInfo: $username")
         viewModelScope.launch {
-            uiState = ProfilePageState.Loading
+            _uiState.value = ProfilePageState.Loading
 
-            uiState = try {
+            _uiState.value = try {
                 val response = GitHubApi.service.getUserInfo(username)
                 ProfilePageState.Success(response)
             } catch (e: Exception) {
+                Log.e("ProfilePageViewModel", "getUserInfo: $e")
                 ProfilePageState.Error(e.message ?: "An unexpected error occurred")
             }
         }

@@ -36,7 +36,6 @@ fun WearApp() {
     GitHubWearTheme {
         AppScaffold {
             val navController = rememberSwipeDismissableNavController()
-            val model: ProfilePageViewModel = viewModel()
 
             SwipeDismissableNavHost(navController, startDestination = "home") {
                 composable("home") { HomePage { username ->
@@ -46,10 +45,10 @@ fun WearApp() {
                 composable("profile/{username}",
                     arguments = listOf(navArgument("username") { type = NavType.StringType }))
                 { navBackStackEntry ->
-                    val username = navBackStackEntry.arguments?.getString("username")
-                    username?.let { model.getUserInfo(it) }
+                    val username = navBackStackEntry.arguments?.getString("username") ?:
+                    "LuanRoger"
 
-                    ProfilePage(uiState = model.uiState)
+                    ProfilePage(username)
                 }
             }
         }
